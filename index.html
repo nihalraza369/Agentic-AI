@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agentic AI Workflow Diagram</title>
+  <style>
+    /* Basic Styling */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .row {
+      display: flex;
+      gap: 50px; /* Space between boxes for arrows */
+      position: relative;
+    }
+
+    .box {
+      width: 150px;
+      padding: 20px;
+      background-color: #ffffff;
+      border: 2px solid #0078d7;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: bold;
+      color: #0078d7;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+    }
+
+    .box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .box .details {
+      display: none;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+      text-align: left;
+    }
+
+    .box.active {
+      background-color: #0078d7;
+      color: #ffffff;
+    }
+
+    .box.active .details {
+      display: block;
+      animation: fadeIn 0.5s ease;
+    }
+
+    /* Arrow Styling and Animation */
+    .arrow {
+      position: absolute;
+      width: 40px;
+      height: 2px;
+      background-color: #0078d7;
+      top: 50%;
+      left: 100%;
+      transform: translateY(-50%);
+      animation: moveArrow 1.5s infinite;
+    }
+
+    .arrow::after {
+      content: '';
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      width: 0;
+      height: 0;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
+      border-left: 10px solid #0078d7;
+    }
+
+    @keyframes moveArrow {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(10px); }
+      100% { transform: translateX(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Upper Row: 3 Boxes -->
+    <div class="row">
+      <div class="box" onclick="toggleDetails(this)">
+        Problem Identification & Goal Setting
+        <div class="details">
+          <strong>Definition:</strong> System ko samajhna hota hai ki kya problem hai aur kya achieve karna hai.<br>
+          <strong>Kaam:</strong> Goal define karna.
+        </div>
+      </div>
+      <div class="arrow"></div> <!-- Arrow between boxes -->
+      <div class="box" onclick="toggleDetails(this)">
+        Environment Sensing
+        <div class="details">
+          <strong>Definition:</strong> System apne environment se data collect karta hai.<br>
+          <strong>Kaam:</strong> Sensors, databases, ya user inputs se data lena.
+        </div>
+      </div>
+      <div class="arrow"></div> <!-- Arrow between boxes -->
+      <div class="box" onclick="toggleDetails(this)">
+        Data Processing & Analysis
+        <div class="details">
+          <strong>Definition:</strong> Collected data ko process aur analyze karna.<br>
+          <strong>Kaam:</strong> Meaningful insights nikalna.
+        </div>
+      </div>
+    </div>
+
+    <!-- Lower Row: 3 Boxes -->
+    <div class="row">
+      <div class="box" onclick="toggleDetails(this)">
+        Decision Making
+        <div class="details">
+          <strong>Definition:</strong> Analysis ke baad decisions lena.<br>
+          <strong>Kaam:</strong> Goals ke hisab se actions plan karna.
+        </div>
+      </div>
+      <div class="arrow"></div> <!-- Arrow between boxes -->
+      <div class="box" onclick="toggleDetails(this)">
+        Action Execution
+        <div class="details">
+          <strong>Definition:</strong> Decisions ko execute karna.<br>
+          <strong>Kaam:</strong> Actions lena, jaise robot movement ya email send karna.
+        </div>
+      </div>
+      <!-- No arrow after the last box -->
+      <div class="box" onclick="toggleDetails(this)">
+        Feedback & Learning
+        <div class="details">
+          <strong>Definition:</strong> Actions ke results ko monitor karna.<br>
+          <strong>Kaam:</strong> Feedback ke through decisions ko improve karna.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Function to toggle details
+    function toggleDetails(box) {
+      // Hide details in all boxes
+      const allBoxes = document.querySelectorAll('.box');
+      allBoxes.forEach(b => {
+        if (b !== box) {
+          b.classList.remove('active');
+        }
+      });
+
+      // Toggle active class for the clicked box
+      box.classList.toggle('active');
+    }
+  </script>
+</body>
+</html>
